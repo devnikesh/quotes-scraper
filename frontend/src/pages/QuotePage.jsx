@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuotes } from "../hooks/useQuotes";
+import QuoteHeader from "../features/quotes/QuoteHeader";
 import QuoteCard from "../components/QuoteCard";
 
 const QuotePage = () => {
@@ -7,6 +8,7 @@ const QuotePage = () => {
 
   return (
     <>
+      <QuoteHeader loading={loading} />
       <div className="min-h-screen bg-gray-950 text-white">
         {/* Main content */}
         <main className="max-w-7xl mx-auto px-6 py-8">
