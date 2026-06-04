@@ -1,5 +1,6 @@
 // Main app — fetches quotes from the backend and renders them in a card grid
 import { useState, useEffect } from "react";
+import { fetchQuotes } from "./services/quotesService";
 
 // Single quote card
 function QuoteCard({ quote }) {
@@ -23,23 +24,6 @@ export default function App() {
   const [lastUpdated, setLastUpdated] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const API = import.meta.env.VITE_API_URL;
-
-  async function fetchQuotes() {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch(API);
-      if (!res.ok) throw new Error(`Server error: ${res.status}`);
-      const data = await res.json();
-      setQuotes(data.quotes);
-      setLastUpdated(data.lastUpdated);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  }
 
   useEffect(() => {
     fetchQuotes();
