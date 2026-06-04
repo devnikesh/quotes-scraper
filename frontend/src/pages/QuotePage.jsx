@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuotes } from "../hooks/useQuotes";
 import QuoteHeader from "../features/quotes/QuoteHeader";
 import QuoteCard from "../components/QuoteCard";
+import QuoteList from "../features/quotes/QuoteList";
 
 const QuotePage = () => {
   const { loading, error, quotes, lastUpdated, refetch: loadQuotes } = useQuotes();
@@ -28,6 +29,9 @@ const QuotePage = () => {
 
           {/* Quote count */}
           {quotes.length > 0 && <p className="text-gray-500 text-sm mb-6">{quotes.length} quotes found</p>}
+
+          {/* Card grid */}
+          <QuoteList quotes={quotes} loading={loading} />
         </main>
       </div>
     </>
