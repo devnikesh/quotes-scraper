@@ -1,5 +1,5 @@
 // Main app — fetches quotes from the backend and renders them in a card grid
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 // Single quote card
 function QuoteCard({ quote }) {
@@ -9,10 +9,7 @@ function QuoteCard({ quote }) {
       <p className="text-indigo-400 font-semibold text-sm">— {quote.author}</p>
       <div className="flex flex-wrap gap-2 mt-auto pt-2 border-t border-gray-800">
         {quote.tags.map((tag) => (
-          <span
-            key={tag}
-            className="text-xs bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-800"
-          >
+          <span key={tag} className="text-xs bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-800">
             {tag}
           </span>
         ))}
@@ -26,12 +23,13 @@ export default function App() {
   const [lastUpdated, setLastUpdated] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const API = import.meta.env.VITE_API_URL;
 
   async function fetchQuotes() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/quotes');
+      const res = await fetch(API);
       if (!res.ok) throw new Error(`Server error: ${res.status}`);
       const data = await res.json();
       setQuotes(data.quotes);
@@ -53,11 +51,7 @@ export default function App() {
       <header className="sticky top-0 z-10 bg-gray-950/80 backdrop-blur border-b border-gray-800 px-6 py-4 flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold text-white tracking-tight">Quotes Dashboard</h1>
-          {lastUpdated && (
-            <p className="text-xs text-gray-500 mt-0.5">
-              Last updated: {new Date(lastUpdated).toLocaleString()}
-            </p>
-          )}
+          {lastUpdated && <p className="text-xs text-gray-500 mt-0.5">Last updated: {new Date(lastUpdated).toLocaleString()}</p>}
         </div>
         <button
           onClick={fetchQuotes}
@@ -73,7 +67,7 @@ export default function App() {
               Scraping…
             </>
           ) : (
-            'Refresh'
+            "Refresh"
           )}
         </button>
       </header>
@@ -92,16 +86,10 @@ export default function App() {
         )}
 
         {/* Error state */}
-        {error && (
-          <div className="bg-red-950 border border-red-800 text-red-300 rounded-xl px-5 py-4 text-sm mb-6">
-            {error}
-          </div>
-        )}
+        {error && <div className="bg-red-950 border border-red-800 text-red-300 rounded-xl px-5 py-4 text-sm mb-6">{error}</div>}
 
         {/* Quote count */}
-        {quotes.length > 0 && (
-          <p className="text-gray-500 text-sm mb-6">{quotes.length} quotes found</p>
-        )}
+        {quotes.length > 0 && <p className="text-gray-500 text-sm mb-6">{quotes.length} quotes found</p>}
 
         {/* Card grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
