@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { fetchQuotes } from "../../services/quotesService";
+import Spinner from "../ui/Spinner";
 
 const QuoteHeader = ({ loading, lastUpdated, refetch }) => {
   const [currentPage, setCurrentPage] = useState("");
@@ -13,14 +14,11 @@ const QuoteHeader = ({ loading, lastUpdated, refetch }) => {
       <button
         onClick={refetch}
         disabled={loading}
-        className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors duration-150"
+        className="flex items-center cursor-pointer gap-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors duration-150"
       >
         {loading ? (
           <>
-            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
-            </svg>
+            <Spinner size={"sm"} />
             Scraping…
           </>
         ) : (
