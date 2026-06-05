@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import QuotePage from "./pages/QuotePage";
+import "./App.css";
 
 export default function App() {
   return (
