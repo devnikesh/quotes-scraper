@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo } from "react";
-import { useDebounce } from "../../hooks/useDebounce";
 import QuoteCard from "../../components/QuoteCard";
 
 const QuoteList = ({ quotes, loading }) => {
