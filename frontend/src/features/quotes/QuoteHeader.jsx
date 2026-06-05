@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { fetchQuotes } from "../../services/quotesService";
 
-const QuoteHeader = ({ loading, lastUpdated }) => {
+const QuoteHeader = ({ loading, lastUpdated, refetch }) => {
   const [currentPage, setCurrentPage] = useState("");
 
   return (
@@ -11,7 +11,7 @@ const QuoteHeader = ({ loading, lastUpdated }) => {
         {lastUpdated && <p className="text-xs text-gray-500 mt-0.5">Last updated: {new Date(lastUpdated).toLocaleString()}</p>}
       </div>
       <button
-        onClick={fetchQuotes}
+        onClick={refetch}
         disabled={loading}
         className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors duration-150"
       >

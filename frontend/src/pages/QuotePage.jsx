@@ -5,11 +5,11 @@ import QuoteCard from "../components/QuoteCard";
 import QuoteList from "../features/quotes/QuoteList";
 
 const QuotePage = () => {
-  const { loading, error, quotes, lastUpdated, refetch: loadQuotes } = useQuotes();
+  const { loading, error, quotes, lastUpdated, refetch } = useQuotes();
 
   return (
     <>
-      <QuoteHeader loading={loading} />
+      <QuoteHeader loading={loading} refetch={refetch} lastUpdated={lastUpdated} />
       <div className="min-h-screen bg-gray-950 text-white">
         {/* Main content */}
         <main className="max-w-7xl mx-auto px-6 py-8">
